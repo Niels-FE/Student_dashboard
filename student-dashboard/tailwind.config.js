@@ -4,7 +4,7 @@ module.exports = {
     "./public/index.html"],
   darkMode: 'media',
   theme: {
-    borderWidth: {
+    border: {
       DEFAULT: '1px',
       "0": "0",
       "2": "2",

@@ -5,12 +5,11 @@ import { Dashboard } from "./components/Dashboard.jsx";
 
 function App() {
   return (
-    <section className="grid grid-cols-10 gap-2">
-      <header>
-        <Sidenav />
+    <section className="grid grid-cols-10 gap-4 max-w-6xl m-auto" >
+      <header className="w-full col-start-2 xl:col-start-1 col-end-10 xl:col-end-12 bg-white rounded-md p-2 row-start-2">
         <Header />
       </header>
-      <main>
+      <main className="w-full col-start-2 xl:col-start-1 col-end-10 xl:col-end-12 bg-white rounded-md p-2 row-start-3">
         <Dashboard />
       </main>
     </section>

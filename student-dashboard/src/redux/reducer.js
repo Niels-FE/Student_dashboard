@@ -6,6 +6,7 @@ export const reducer = createSlice({
     initialState: {
         allStudents: dataModel,
         currentStudent: null,
+        visual: "bar"
     },
     reducers: {
         setCurrent: (state, action) => {
