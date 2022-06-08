@@ -9,11 +9,11 @@ export const reducer = createSlice({
         visual: "bar"
     },
     reducers: {
-        setCurrent: (state, action) => {
-            console.log(action);
+        setVisual: (state, action) => {
+            state.visual = action.payload;
         },
     },
 })
 
-export const { setCurrent } = reducer.actions;
+export const { setVisual } = reducer.actions;
 export default reducer.reducer;
