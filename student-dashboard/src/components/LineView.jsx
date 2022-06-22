@@ -1,28 +1,54 @@
 import React from 'react';
-import { VictoryLine, VictoryLabel, VictoryChart, VictoryGroup, VictoryTheme } from 'victory';
+import { VictoryLine, VictoryAxis, VictoryChart, VictoryGroup, VictoryTheme, VictoryLegend, VictoryLabel } from 'victory';
 
 export const LineView = ({ data }) => {
     return (
-        <div className="col-span-4 row-start-1 row-end-4 w-full">
+        <div className="col-start-1 col-end-9 row-start-1 row-end-3 w-full">
             <VictoryChart
+                height={500}
+                width={1000}
                 theme={VictoryTheme.material}
-                domain={{ y: [0, 5.0], x: [1, 5] }}
+                domain={{ y: [0, 5], x: [0, 10] }}
+                animate={{
+                    duration: 1000,
+                }}
             >
-                <VictoryGroup
-                    offset={5}
-                    style={{ data: { width: 5 }, parent: { border: 0 } }}
-                    colorScale={["#55aa00", "#2563eb"]}
-                    animate={{
-                        onLoad: { duration: 1000 }
+                <VictoryAxis dependentAxis
+                    tickLabelComponent={(
+                        <VictoryLabel
+                            verticalAnchor="middle"
+                            textAnchor="start"
+                            x={15}
+                        />
+                    )}
+                    style={{
+                        tickLabels: {
+                            fontSize: 15,
+                        }
                     }}
+                />
+                <VictoryAxis
+                    tickLabelComponent={(
+                        <VictoryLabel
+                            verticalAnchor="middle"
+                            textAnchor="middle"
+                        />
+                    )}
+                    style={{
+                        tickLabels: {
+                            fontSize: 15,
+                        }
+                    }}
+                />
+                <VictoryGroup
+                    colorScale={["#55aa00", "#2563eb"]}
+                    style={{ data: { width: 10 } }}
+                    offset={10}
                 >
                     <VictoryLine
                         data={data}
                         x="Project"
                         y={"Difficulty"}
-                        labels={"Project"}
-                        style={{ labels: { fontSize: 100 }, ticklabels: { fontSize: 100 } }}
-                        labelComponent={<VictoryLabel style={{ tickLabels: { fontSize: 50 } }} />}
                     />
                     <VictoryLine
                         data={data}
@@ -31,9 +57,16 @@ export const LineView = ({ data }) => {
                     />
 
                 </VictoryGroup>
+                <VictoryLegend
+                    orientation="horizontal"
+                    data={[
+                        { name: "Difficulty", symbol: { fill: "#55aa00" } },
+                        { name: "Funfactor", symbol: { fill: "#2563eb" } },
+                    ]}
+                    style={{ labels: { fontSize: 15 } }}
+                    x={800}
+                />
             </VictoryChart>
-
-
         </div >
     )
 }

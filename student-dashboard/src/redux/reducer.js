@@ -1,11 +1,14 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { output } from "../data/data_output.js";
+
+const student = window.location.pathname !== "/" ? window.location.pathname.slice(1) : "All"
+const outputState = output.map(item => ({ Name: item.Name, Project: item.Project, Difficulty: Number(item.Difficulty), Funfactor: Number(item.Funfactor) }))
 
 export const reducer = createSlice({
     name: "studentInfo",
     initialState: {
-        output,
-        currentStudent: "All",
+        output: outputState,
+        currentStudent: student,
         visual: "bar"
     },
     reducers: {

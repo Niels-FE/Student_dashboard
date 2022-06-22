@@ -24,7 +24,7 @@ export const Sidenav = () => {
     })
     listOfNames.sort();
 
-    const elements = listOfNames.map(name => { return name === "All" ? <li className={currentStudent === name ? styleCurrent : styleNormal} ><Link className="p-2 w-full block" onClick={() => { changeCurrentName(name) }} to="/">{name}</Link></li> : <li className={currentStudent === name ? styleCurrent : styleNormal} ><Link className="p-2 w-full block" onClick={() => { changeCurrentName(name) }} to={`/${name}`}>{name}</Link></li> });
+    const elements = listOfNames.map(name => { return name === "All" ? <li key={name} className={currentStudent === name ? styleCurrent : styleNormal} ><Link className="p-2 w-full block" onClick={() => { changeCurrentName(name) }} to="/">{name}</Link></li> : <li key={name} className={currentStudent === name ? styleCurrent : styleNormal} ><Link className="p-2 w-full block" onClick={() => { changeCurrentName(name) }} to={`/${name}`}>{name}</Link></li> });
 
     return (
         <ul className="bg-white p-2">

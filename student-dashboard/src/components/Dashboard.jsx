@@ -1,13 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { BarView } from './BarView.jsx';
 import { Table } from './Table.jsx';
 import { LineView } from './LineView.jsx';
 import { useSelector } from 'react-redux';
-
-
-// https://formidable.com/open-source/victory/docs 
-// https://www.justinmind.com/ui-design/dashboard-design-best-practices-ux
 
 export const Dashboard = () => {
 
@@ -69,13 +65,12 @@ export const Dashboard = () => {
     } else {
         useData = calculateAverage();
     }
-    console.log(useData)
 
     const currentVisual = visual === "bar" ? <BarView data={useData} /> : visual === "line" ? <LineView data={useData} /> : <Table data={useData} />;
-    const routes = listOfNames.map(name => { return name === "All" ? <Route path={`/`} element={currentVisual}></Route> : <Route path={`/${name}`} element={currentVisual}></Route> });
+    const routes = listOfNames.map(name => { return name === "All" ? <Route key="0" path={`/`} element={currentVisual}></Route> : <Route key={name} path={`/${name}`} element={currentVisual}></Route> });
 
     return (
-        <section className="grid grid-cols-4 grid-rows-[repeat(3,_250px)] gap-4">
+        <section className="grid grid-cols-8 gap-4">
             <Routes>
                 {routes}
             </Routes>
