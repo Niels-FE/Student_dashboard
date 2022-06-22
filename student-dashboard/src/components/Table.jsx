@@ -11,7 +11,7 @@ export const Table = ({ data }) => {
         return <tr key={`${item.Project} - ${item.Difficulty}`} className={even ? "bg-blue-100" : null}><td>{item.Project}</td><td>{item.Difficulty}</td><td>{item.Funfactor}</td></tr>
     })
 
-    if (currentStudent == "All") {
+    if (currentStudent === "All") {
         return (
             <div className="col-span-4 row-start-1 w-full">
                 <aside className="bg-red-500 text-white p-4">
