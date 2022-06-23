@@ -3,13 +3,22 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { BarView } from './BarView.jsx';
 import { Table } from './Table.jsx';
 import { LineView } from './LineView.jsx';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { output } from "../data/data_output.js";
+import { startState } from "../redux/reducer.js"
 
 export const Dashboard = () => {
 
     const allData = useSelector(state => state.output);
     const visual = useSelector(state => state.visual);
     const currentStudent = useSelector(state => state.currentStudent);
+    const dispatch = useDispatch();
+
+    if (allData.length === 0) {
+        const outputState = output.map(item => ({ Name: item.Name, Project: item.Project, Difficulty: Number(item.Difficulty), Funfactor: Number(item.Funfactor) }));
+        dispatch(startState(outputState));
+    }
+
 
     const listOfNames = []
     listOfNames.push("All");
@@ -67,6 +76,7 @@ export const Dashboard = () => {
     }
 
     const currentVisual = visual === "bar" ? <BarView data={useData} /> : visual === "line" ? <LineView data={useData} /> : <Table data={useData} />;
+
     const routes = listOfNames.map(name => { return name === "All" ? <Route key="0" path={`/`} element={currentVisual}></Route> : <Route key={name} path={`/${name}`} element={currentVisual}></Route> });
 
     return (

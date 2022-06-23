@@ -2,7 +2,6 @@ import React from 'react';
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryTheme, VictoryGroup, VictoryLegend } from 'victory';
 
 export const BarView = ({ data }) => {
-    console.log(data)
     return (
         <div className="col-start-1 col-end-9 row-start-1 row-end-3 w-full">
             <VictoryChart
